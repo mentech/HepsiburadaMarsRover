@@ -8,7 +8,7 @@ namespace MarsRoverUnitTest
     public class MarsRoverTest
     {
         [TestMethod]
-        public void Test_12N_LMLMLMLMM()
+        public void Move_12N_LMLMLMLMM_13N()
         {
             var maxPoints = new List<int>() { 5, 5 };
 
@@ -32,7 +32,7 @@ namespace MarsRoverUnitTest
         }
 
         [TestMethod]
-        public void Test_33E_MRRMMRMRRM()
+        public void Move_33E_MRRMMRMRRM_51E()
         {
             var maxPoints = new List<int>() { 5, 5 };
 
