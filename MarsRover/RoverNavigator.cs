@@ -8,15 +8,25 @@ namespace MarsRover
     {
         public Position position { get; set; }
 
-        private void MoveOneUnitToForward()
+        private void ChangeRoverAngle(int changeAmount)
         {
+            position.DirectionAngle += changeAmount;
+
             position.DirectionAngle = position.DirectionAngle % 360;
 
-            if (position.DirectionAngle<0)
+            if (position.DirectionAngle < 0)
             {
                 position.DirectionAngle += 360;
             }
+        }
+        private Directions GetRoverDirectionFromAngle(int directionAngle)
+        {
+            return (Directions)(directionAngle/90);
+        }
 
+        private void MoveOneUnitToForward()
+        {
+            
             switch (position.DirectionAngle)
             {
                 case 0:
@@ -46,15 +56,17 @@ namespace MarsRover
                         MoveOneUnitToForward();
                         break;
                     case 'L':
-                        position.DirectionAngle -= 90;
+                        ChangeRoverAngle(-90);
                         break;
                     case 'R':
-                        position.DirectionAngle += 90;
+                        ChangeRoverAngle(90);
                         break;
                     default:
                         Console.WriteLine($"Invalid instraction '{move}', please use 'R', 'L' or 'M'");
                         break;
                 }
+
+                position.Direction = GetRoverDirectionFromAngle(position.DirectionAngle);
 
                 if (position.X < 0 || position.X > maxPoints[0] || position.Y < 0 || position.Y > maxPoints[1])
                 {
