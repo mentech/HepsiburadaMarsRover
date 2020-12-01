@@ -8,62 +8,27 @@ namespace MarsRover
     {
         public Position position { get; set; }
 
-        private void Rotate90DegreesToLeft()
-        {
-            switch (position.Direction)
-            {
-                case Directions.N:
-                    position.Direction = Directions.W;
-                    break;
-                case Directions.S:
-                    position.Direction = Directions.E;
-                    break;
-                case Directions.E:
-                    position.Direction = Directions.N;
-                    break;
-                case Directions.W:
-                    position.Direction = Directions.S;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void Rotate90DegreesToRight()
-        {
-            switch (position.Direction)
-            {
-                case Directions.N:
-                    position.Direction = Directions.E;
-                    break;
-                case Directions.S:
-                    position.Direction = Directions.W;
-                    break;
-                case Directions.E:
-                    position.Direction = Directions.S;
-                    break;
-                case Directions.W:
-                    position.Direction = Directions.N;
-                    break;
-                default:
-                    break;
-            }
-        }
-
         private void MoveOneUnitToForward()
         {
-            switch (position.Direction)
+            position.DirectionAngle = position.DirectionAngle % 360;
+
+            if (position.DirectionAngle<0)
             {
-                case Directions.N:
+                position.DirectionAngle += 360;
+            }
+
+            switch (position.DirectionAngle)
+            {
+                case 0:
                     position.Y += 1;
                     break;
-                case Directions.S:
-                    position.Y -= 1;
-                    break;
-                case Directions.E:
+                case 90:
                     position.X += 1;
                     break;
-                case Directions.W:
+                case 180:
+                    position.Y -= 1;
+                    break;
+                case 270:
                     position.X -= 1;
                     break;
                 default:
@@ -81,10 +46,10 @@ namespace MarsRover
                         MoveOneUnitToForward();
                         break;
                     case 'L':
-                        Rotate90DegreesToLeft();
+                        position.DirectionAngle -= 90;
                         break;
                     case 'R':
-                        Rotate90DegreesToRight();
+                        position.DirectionAngle += 90;
                         break;
                     default:
                         Console.WriteLine($"Invalid instraction '{move}', please use 'R', 'L' or 'M'");

@@ -24,12 +24,7 @@ namespace MarsRover
                     throw new Exception("Start position should have 3 unit. Example: 0 0 N");
                 }
 
-                roverNavigator.position = new Position()
-                {
-                    X = Convert.ToInt32(startPositions[0]),
-                    Y = Convert.ToInt32(startPositions[1]),
-                    Direction = (Directions)Enum.Parse(typeof(Directions), startPositions[2].ToUpper())
-                };
+                roverNavigator.position = new Position(Convert.ToInt32(startPositions[0]), Convert.ToInt32(startPositions[1]), (Directions)Enum.Parse(typeof(Directions), startPositions[2].ToUpper()));
             }
             catch (Exception ex)
             {

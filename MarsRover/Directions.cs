@@ -6,9 +6,9 @@ namespace MarsRover
 {
     public enum Directions
     {
-        N = 1,
-        S = 2,
-        E = 3,
-        W = 4
+        N = 0, // 0 degree
+        E = 1, // 90 degree
+        S = 2, // 180 degree
+        W = 3 // 270 degree
     }
 }

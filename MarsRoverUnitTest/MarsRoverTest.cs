@@ -14,12 +14,7 @@ namespace MarsRoverUnitTest
 
             RoverNavigator roverNavigator = new RoverNavigator();
 
-            roverNavigator.position = new Position
-            {
-                X = 1,
-                Y = 2,
-                Direction = Directions.N
-            };
+            roverNavigator.position = new Position(1,2,Directions.N);
 
             var instructions = "LMLMLMLMM";
 
@@ -37,19 +32,14 @@ namespace MarsRoverUnitTest
             var maxPoints = new List<int>() { 5, 5 };
 
             RoverNavigator roverNavigator = new RoverNavigator();
-            roverNavigator.position = new Position
-            {
-                X = 3,
-                Y = 3,
-                Direction = Directions.E
-            };
-
-            var instructions = "MRRMMRMRRM";
+            roverNavigator.position = new Position(3, 3, Directions.E);
+            
+            var instructions = "MMRMMRMRRM";
 
             roverNavigator.MoveWithInstructions(maxPoints, instructions);
 
             var actualOutput = $"{roverNavigator.position.X} {roverNavigator.position.Y} {roverNavigator.position.Direction.ToString()}";
-            var expectedOutput = "2 3 S";
+            var expectedOutput = "5 1 E";
 
             Assert.AreEqual(expectedOutput, actualOutput);
         }
